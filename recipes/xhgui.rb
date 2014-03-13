@@ -21,8 +21,6 @@ include_recipe "git"
 include_recipe "database::mysql"
 include_recipe "mysql"
 include_recipe "mysql::server"
-include_recipe "apache2"
-include_recipe "apache2::mod_php5"
 include_recipe "php::module_mysql"
 
 directory "/opt/xhprof" do
@@ -81,12 +79,3 @@ template "#{node['xhprof']['install_path']}/xhprof_lib/config.php" do
     :database => node['xhprof']['db']
   )
 end
-
-web_app node['xhprof']['hostname'] do
-  server_name node['xhprof']['hostname']
-  apache node['apache']
-  server_aliases [node['fqdn']]
-  docroot "#{node['xhprof']['install_path']}/xhprof_html"
-end
-
-log " You can now access XHGui at #{node['xhprof']['hostname']} #{node['fqdn']}"

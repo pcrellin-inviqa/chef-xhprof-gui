@@ -18,4 +18,6 @@
 #
 
 include_recipe "chef-xhprof-gui::xhprof"
-include_recipe "chef-xhprof-gui::xhgui"
+
+// to make this behave like chef-magento add some logic to include apache or nginx based on attributes
+
